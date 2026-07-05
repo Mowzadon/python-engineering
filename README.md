@@ -9,4 +9,4 @@ This repository contains my learning journey in ahead of year 2 Industrial Engin
 - Develop a strong GitHub portfolio
 
 ## Current Progress
-- [ ] Calculator (in progress)
+- [ ] Calculator (Complete)
