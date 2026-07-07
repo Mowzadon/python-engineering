@@ -30,6 +30,8 @@ hammer = Tool(
     "Shelf A"
 ) #hammer object of the class Tool
 
+drill = Tool("Drill", 1, "Fair", "Worksshop")
+
 hammer.display()
 
 hammer.use()
@@ -40,3 +42,7 @@ print(hammer.condition)
 
 hammer.move("workshop")
 print(hammer.location)
+
+drill.repair()
+drill.move("Shelf A")
+drill.display()
