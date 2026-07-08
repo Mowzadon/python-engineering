@@ -7,7 +7,7 @@ class Tool:
     including its name, quantity, condition, and location.
     """
 
-    def __init__(self, name, condition, quantity, location):
+    def __init__(self, name, quantity, condition, location):
         """
         Initialize a new Tool object.
 
@@ -22,29 +22,32 @@ class Tool:
         self.quantity = quantity
         self.location = location
         
-        def use(self):
-            """
-            Decrease the available quantity of the tool by one.
-            """
-        
-        def repair(self): 
-            """
-            Restore the tool's condition to 'Good'.
-            """
-            self.condition = "Good"
-        
-        def move(self, new_location):
-            """
-            Move the tool to a new storage location.
+    def use(self):
+        """
+        Decrease the available quantity of the tool by one.
+        """
+    
+    def repair(self): 
+        """
+        Restore the tool's condition to 'Good'.
+        """
+        self.condition = "Good"
+    
+    def move(self, new_location):
+        """
+        Move the tool to a new storage location.
 
-            Args:
-                new_location (str): The new location for the tool.
-            """
-            self.location = new_location
-        
-        def display(self):
-            """
-            Display the tool's information.
-            """
-
-            
+        Args:
+            new_location (str): The new location for the tool.
+        """
+        self.location = new_location
+    
+    def display(self):
+        """
+        Display the tool's information.
+        """
+        print(f"\nTool: {self.name}")
+        print(f"Quantity: {self.quantity}")
+        print(f"Condition: {self.condition}")
+        print(f"Location: {self.location}")
+                
