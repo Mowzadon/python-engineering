@@ -37,9 +37,14 @@ condition = input("Condition: ")
 location = input("Location: ")
 
 new_tool = Tool(name, quantity, condition, location)
-
 toolbox.append(new_tool)
+
+tool_name = input("Which tool? ").title() #capitalize user input to match name attribute of tool object.
+for tool in toolbox:
+    if tool.name == tool_name:
+        tool.use()
 
 for tool in toolbox:
     tool.display()
+
 
