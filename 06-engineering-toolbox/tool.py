@@ -24,9 +24,16 @@ class Tool:
         
     def use(self):
         """
-        Decrease the available quantity of the tool by one.
+        Decrease quantity by one if available.
+
+        Returns:
+            bool: True if the tool was used, False if none are available.
         """
-        self.quantity -=1
+        if self.quantity > 0:
+            self.quantity -= 1
+            return True
+
+        return False
     
     def repair(self): 
         """
