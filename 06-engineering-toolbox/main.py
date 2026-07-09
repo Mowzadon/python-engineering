@@ -9,7 +9,9 @@ inventory = [hammer, drill, wrench]
 
 def add_tool():
     """
+    Args:
     (none) --> (none)
+
     Add a new tool to the inventory.
     """
     name = input("Enter the name of the tool: ")
@@ -24,7 +26,9 @@ def add_tool():
 #main program loop
 def main():
     """
+    Args:
     (none) --> (none)
+
     Main Program loop
     """
     
@@ -48,15 +52,15 @@ def main():
             for tool in inventory: 
                 tool.display()
                 print()
-                continue 
+                
         
         #Add tool option
-        if option == "2":
+        elif option == "2": #use elif after the first if statement to avoid running all the if statements.
             add_tool()
             continue
             
         #Exit program loop option
-        if option == "6":
+        elif option == "6":
             print("Goodbye!")
             break
 
