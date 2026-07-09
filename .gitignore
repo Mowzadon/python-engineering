@@ -3,3 +3,7 @@ __pycache__/
 .vscode/
 .env
 calculator.py
+02-lists/
+03-dictionaries/
+04-nested-dictionaries/
+05-oop/
