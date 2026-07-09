@@ -34,7 +34,7 @@ def main():
     
     while True: 
     #User Menu
-        
+        print()
         print("============================\nEngineering Toolbox\n============================")
         print()
         print("1. View Inventory")
@@ -51,14 +51,26 @@ def main():
         if option == "1":
             for tool in inventory: 
                 tool.display()
-                print()
                 
-        
         #Add tool option
         elif option == "2": #use elif after the first if statement to avoid running all the if statements.
             add_tool()
             continue
-            
+
+        #Use tool option
+        elif option == "3":
+            tool_name = input("Which tool would you like to use? ")
+
+            for tool in inventory:
+                if tool.name.lower() == tool_name.lower():
+                    if tool.use(): #is True
+                        print(f"{tool.name} has been used. Remaining quantity: {tool.quantity}.")
+                    else:
+                        print(f"{tool.name} is out of stock.")
+                    break
+            else: 
+                print("Tool not found. ")
+
         #Exit program loop option
         elif option == "6":
             print("Goodbye!")

@@ -26,6 +26,7 @@ class Tool:
         """
         Decrease the available quantity of the tool by one.
         """
+        self.quantity -=1
     
     def repair(self): 
         """
@@ -50,4 +51,3 @@ class Tool:
         print(f"Quantity: {self.quantity}")
         print(f"Condition: {self.condition}")
         print(f"Location: {self.location}")
-                
