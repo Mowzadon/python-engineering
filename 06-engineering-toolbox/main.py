@@ -3,7 +3,7 @@ from tool import Tool #import Tool class from tool.py
 #initialize starting inventory objects
 hammer = Tool("Hammer", 3, "Good", "Shelf A")
 drill = Tool("Drill", 1, "Fair", "Workshop")
-wrench = Tool("Wrench", 5, "Excellent", "Drawer 2")
+wrench = Tool("Wrench", 5, "Poor", "Drawer 2")
 
 inventory = [hammer, drill, wrench]
 
@@ -49,10 +49,29 @@ def find_tool(tool_name): #find a tool in the existing inventory, return it if i
     return None
 
 def tool_not_found(): #prints a message to the user when a tool is not found. 
-    """Display a message when a requested tool cannot be found.
+    """
+    Display a message when a requested tool cannot be found.
     """
     print("Tool not found.") #you can't have a print statement as a return value, because it will return None
 
+def show_stats():
+    """
+    Display summary of statistics about the current inventory.
+    """
+    unique_tools = len(inventory)
+
+    total_quantity = 0
+    tools_needing_repair = 0
+
+    for tool in inventory: 
+        total_quantity += tool.quantity
+
+        if tool.condition != "Good":
+            tools_needing_repair += 1
+    print("\n===== Inventory Statistics =====")
+    print(f"Unique tools: {unique_tools}")
+    print(f"Total quantity: {total_quantity}")
+    print(f"Tools needing repair: {tools_needing_repair}")
 
 
 
@@ -67,8 +86,7 @@ def main():
     
     while True: 
     #User Menu
-        print()
-        print("============================\nEngineering Toolbox\n============================")
+        print("\n============================\nEngineering Toolbox\n============================")
         print()
         print("1. View Inventory")
         print("2. Add Tool")
@@ -76,8 +94,8 @@ def main():
         print("4. Repair Tool")
         print("5. Move Tool")
         print("6. Remove Tool")
-        print("7. Exit")
-        print()
+        print("7. Inventory Statistics")
+        print("8. Exit")
 
         option = input("Choose an option: ")
 
@@ -144,11 +162,14 @@ def main():
             else: 
                 tool_not_found()
 
-
+        #Display inventory statistics option
+        elif option == "7":
+            show_stats()
         
 
+
         #Exit program loop option
-        elif option == "7":
+        elif option == "8":
             print("Goodbye!")
             break
 
