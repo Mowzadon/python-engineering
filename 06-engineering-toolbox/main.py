@@ -26,7 +26,7 @@ def add_tool(): #add new tool to inventory
 
 def remove_tool(tool): #remove a tool from inventory list, if it exists.
     """
-    Remove an object of the class Tool freom the list
+    Remove an object of the class Tool from the list
     """   
     inventory.remove(tool)
     print(f"{tool.name} has been removed from the inventory.")
@@ -66,7 +66,7 @@ def show_stats():
     for tool in inventory: 
         total_quantity += tool.quantity
 
-        if tool.condition != "Good":
+        if tool.condition.lower == "poor":
             tools_needing_repair += 1
     print("\n===== Inventory Statistics =====\n")
     print(f"Unique tools: {unique_tools}")
@@ -174,7 +174,7 @@ def main():
             break
 
         else: 
-            print("Invalid option. Please choose 1-7.")
+            print("Invalid option. Please choose 1-8.")
 
 
 
