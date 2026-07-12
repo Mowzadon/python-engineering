@@ -68,7 +68,7 @@ def show_stats():
 
         if tool.condition != "Good":
             tools_needing_repair += 1
-    print("\n===== Inventory Statistics =====")
+    print("\n===== Inventory Statistics =====\n")
     print(f"Unique tools: {unique_tools}")
     print(f"Total quantity: {total_quantity}")
     print(f"Tools needing repair: {tools_needing_repair}")

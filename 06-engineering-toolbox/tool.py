@@ -50,6 +50,8 @@ class Tool:
         """
         self.location = new_location
     
+   
+    
     def display(self):
         """
         Display the tool's information.
