@@ -77,7 +77,6 @@ def main():
             continue
 
         #Use tool option
-        # Use tool option
         elif option == "3":
             tool_name = input("Which tool would you like to use? ")
 
@@ -93,7 +92,6 @@ def main():
                 print("Tool not found.")
         
         #Repair tool option
-        # Repair tool option
         elif option == "4":
             tool_name = input("Which tool would you like to repair? ")
 
@@ -104,6 +102,20 @@ def main():
                 print(f"{tool.name} has been repaired.")
             else:
                 print("Tool not found.")
+
+        #Move tool option
+        elif option == "5":
+            tool_name = input("Which yool would you like to move? ")
+
+            tool = find_tool(tool_name)
+
+            if tool is not None: 
+                new_location = input("Enter the tool's new location: ")
+                tool.move(new_location)
+                print(f"{tool.name} has been moved to {tool.location}.")
+            else:
+                print("Tool not found")
+
 
         #Exit program loop option
         elif option == "6":
