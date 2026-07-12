@@ -24,7 +24,14 @@ def add_tool(): #add new tool to inventory
     inventory.append(new_tool)
     print(f"{name} has been added to the inventory.")
 
-def find_tool(tool_name): #find a tool in the existing inventory, if it exists. 
+def remove_tool(tool): #remove a tool from inventory list, if it exists.
+    """
+    Remove an object of the class Tool freom the list
+    """   
+    inventory.remove(tool)
+    print(f"{tool.name} has been removed from the inventory.")
+
+def find_tool(tool_name): #find a tool in the existing inventory, return it if it exits, otherwise return None. 
     """
     Search the inventory for a tool by name.
 
@@ -40,6 +47,13 @@ def find_tool(tool_name): #find a tool in the existing inventory, if it exists.
             return tool
 
     return None
+
+def tool_not_found(): #prints a message to the user when a tool is not found. 
+    """Display a message when a requested tool cannot be found.
+    """
+    print("Tool not found.") #you can't have a print statement as a return value, because it will return None
+
+
 
 
 #main program loop
@@ -61,7 +75,8 @@ def main():
         print("3. Use Tool")
         print("4. Repair Tool")
         print("5. Move Tool")
-        print("6. Exit")
+        print("6. Remove Tool")
+        print("7. Exit")
         print()
 
         option = input("Choose an option: ")
@@ -89,7 +104,7 @@ def main():
                 else:
                     print(f"{tool.name} is out of stock.")
             else:
-                print("Tool not found.")
+                tool_not_found()
         
         #Repair tool option
         elif option == "4":
@@ -101,11 +116,11 @@ def main():
                 tool.repair()
                 print(f"{tool.name} has been repaired.")
             else:
-                print("Tool not found.")
+                tool_not_found()
 
         #Move tool option
         elif option == "5":
-            tool_name = input("Which yool would you like to move? ")
+            tool_name = input("Which tool would you like to move? ")
 
             tool = find_tool(tool_name)
 
@@ -114,16 +129,31 @@ def main():
                 tool.move(new_location)
                 print(f"{tool.name} has been moved to {tool.location}.")
             else:
-                print("Tool not found")
+                tool_not_found()
 
+
+        #Remove tool option
+        elif option == "6": 
+            tool_name = input("Which tool would you like to remove? ")
+
+            tool = find_tool(tool_name)
+
+            if tool is not None: 
+                remove_tool(tool)
+
+            else: 
+                tool_not_found()
+
+
+        
 
         #Exit program loop option
-        elif option == "6":
+        elif option == "7":
             print("Goodbye!")
             break
 
         else: 
-            print("Invalid option. Please choose 1-6.")
+            print("Invalid option. Please choose 1-7.")
 
 
 
