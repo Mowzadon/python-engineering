@@ -1,6 +1,6 @@
 from tool import Tool #import Tool class from tool.py
 
-#initialize starting inventory objects
+#Initialize starting inventory objects.
 hammer = Tool("Hammer", 3, "Good", "Shelf A")
 drill = Tool("Drill", 1, "Fair", "Workshop")
 wrench = Tool("Wrench", 5, "Poor", "Drawer 2")
@@ -8,7 +8,7 @@ wrench = Tool("Wrench", 5, "Poor", "Drawer 2")
 inventory = [hammer, drill, wrench]
 
 
-def add_tool(): #add new tool to inventory
+def add_tool(): #Add new tool to inventory.
     """
     Args:
     (none) --> (none)
@@ -24,14 +24,14 @@ def add_tool(): #add new tool to inventory
     inventory.append(new_tool)
     print(f"{name} has been added to the inventory.")
 
-def remove_tool(tool): #remove a tool from inventory list, if it exists.
+def remove_tool(tool): #Remove a tool from inventory list, if it exists.
     """
     Remove an object of the class Tool from the list
     """   
     inventory.remove(tool)
     print(f"{tool.name} has been removed from the inventory.")
 
-def find_tool(tool_name): #find a tool in the existing inventory, return it if it exits, otherwise return None. 
+def find_tool(tool_name): #Find a tool in the existing inventory, return it if it exits, otherwise return None. 
     """
     Search the inventory for a tool by name.
 
@@ -52,7 +52,7 @@ def tool_not_found(): #prints a message to the user when a tool is not found.
     """
     Display a message when a requested tool cannot be found.
     """
-    print("Tool not found.") #you can't have a print statement as a return value, because it will return None
+    print("Tool not found.") #You can't have a print statement as a return value, because it will return None.
 
 def show_stats():
     """
@@ -63,11 +63,31 @@ def show_stats():
     total_quantity = 0
     tools_needing_repair = 0
 
-    for tool in inventory: 
+    for tool in inventory: #Total individual number of tools
         total_quantity += tool.quantity
 
-        if tool.condition.lower == "poor":
+        if tool.condition.lower == "poor": #Total tools needing repair
             tools_needing_repair += 1
+    
+    if len(inventory) == 0: 
+        print("The inventory is empty.")
+        return #exit (the function) line 
+
+    #Initialize most_stocked and least_stocked as the first tool in the inventory to use for comparing the other tools quantities. 
+    most_stocked = inventory[0] 
+    least_stocked = inventory[0]
+
+    for tool in inventory: 
+        if tool.quantity > most_stocked.quantity: 
+            most_stocked = tool
+
+        if tool.quantity < least_stocked.quantity: 
+            least_stocked = tool 
+
+    print(f"most stocked tool: {most_stocked.name} ({most_stocked.quantity})")
+    print(f"Least stocked tool: {least_stocked.name} ({least_stocked.quantity})")
+
+
     print("\n===== Inventory Statistics =====\n")
     print(f"Unique tools: {unique_tools}")
     print(f"Total quantity: {total_quantity}")
@@ -105,7 +125,7 @@ def main():
                 tool.display()
                 
         #Add tool option
-        elif option == "2": #use elif after the first if statement to avoid running all the if statements.
+        elif option == "2": #Use elif after the first if statement to avoid running all the if statements.
             add_tool()
             continue
 
