@@ -50,8 +50,6 @@ class Tool:
         """
         self.location = new_location
     
-   
-    
     def display(self):
         """
         Display the tool's information.
@@ -60,3 +58,15 @@ class Tool:
         print(f"Quantity: {self.quantity}")
         print(f"Condition: {self.condition}")
         print(f"Location: {self.location}")
+    
+    def to_dict(self): 
+        """
+        Convert the Tool object into a dictionary. 
+        """
+        return {
+            "name": self.name,
+            "quantity": self.quantity, 
+            "condition": self.condition, 
+            "location": self.location
+
+        }    

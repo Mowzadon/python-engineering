@@ -1,3 +1,4 @@
+import json
 from tool import Tool #import Tool class from tool.py
 
 #Initialize starting inventory objects.
@@ -7,6 +8,7 @@ wrench = Tool("Wrench", 5, "Poor", "Drawer 2")
 
 inventory = [hammer, drill, wrench]
 
+print(hammer.to_dict()) 
 
 def add_tool(): #Add new tool to inventory.
     """
