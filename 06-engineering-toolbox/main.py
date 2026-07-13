@@ -8,8 +8,6 @@ wrench = Tool("Wrench", 5, "Poor", "Drawer 2")
 
 inventory = [hammer, drill, wrench]
 
-print(hammer.to_dict()) 
-
 def add_tool(): #Add new tool to inventory.
     """
     Args:
@@ -60,6 +58,10 @@ def show_stats():
     """
     Display summary of statistics about the current inventory.
     """
+    if len(inventory) == 0: 
+        print("The inventory is empty.")
+        return #exit (the function) line 
+    
     unique_tools = len(inventory)
 
     total_quantity = 0
@@ -68,12 +70,8 @@ def show_stats():
     for tool in inventory: #Total individual number of tools
         total_quantity += tool.quantity
 
-        if tool.condition.lower == "poor": #Total tools needing repair
+        if tool.condition.lower() == "poor": #Total tools needing repair
             tools_needing_repair += 1
-    
-    if len(inventory) == 0: 
-        print("The inventory is empty.")
-        return #exit (the function) line 
 
     #Initialize most_stocked and least_stocked as the first tool in the inventory to use for comparing the other tools quantities. 
     most_stocked = inventory[0] 
@@ -86,16 +84,25 @@ def show_stats():
         if tool.quantity < least_stocked.quantity: 
             least_stocked = tool 
 
-    print(f"most stocked tool: {most_stocked.name} ({most_stocked.quantity})")
-    print(f"Least stocked tool: {least_stocked.name} ({least_stocked.quantity})")
-
-
     print("\n===== Inventory Statistics =====\n")
     print(f"Unique tools: {unique_tools}")
     print(f"Total quantity: {total_quantity}")
     print(f"Tools needing repair: {tools_needing_repair}")
 
+    print(f"Most stocked tool: {most_stocked.name} ({most_stocked.quantity})")
+    print(f"Least stocked tool: {least_stocked.name} ({least_stocked.quantity})")
 
+def save_inventory():
+    """
+    Save the current inventory to inventory.json.
+    """
+    inventory_data = []
+
+    for tool in inventory:
+        inventory_data.append(tool.to_dict())
+
+    with open("inventory.json", "w") as file:
+        json.dump(inventory_data, file, indent=4)    
 
 #main program loop
 def main():
@@ -192,6 +199,8 @@ def main():
 
         #Exit program loop option
         elif option == "8":
+            save_inventory()
+            print("Inventory saved.")
             print("Goodbye!")
             break
 
@@ -203,6 +212,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
 

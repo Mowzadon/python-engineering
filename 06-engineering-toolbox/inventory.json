@@ -1,1 +1,20 @@
-[]
+[
+    {
+        "name": "Hammer",
+        "quantity": 3,
+        "condition": "Good",
+        "location": "Shelf A"
+    },
+    {
+        "name": "Drill",
+        "quantity": 1,
+        "condition": "Fair",
+        "location": "Workshop"
+    },
+    {
+        "name": "Wrench",
+        "quantity": 5,
+        "condition": "Poor",
+        "location": "Drawer 2"
+    }
+]
