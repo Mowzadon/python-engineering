@@ -16,5 +16,11 @@
         "quantity": 5,
         "condition": "Poor",
         "location": "Drawer 2"
+    },
+    {
+        "name": "Ruler",
+        "quantity": 1,
+        "condition": "Fair",
+        "location": "Desk"
     }
 ]

@@ -5,6 +5,17 @@ from tool import Tool #import Tool class from tool.py
 PROJECT_FOLDER = Path(__file__).parent
 INVENTORY_FILE = PROJECT_FOLDER / "inventory.json"
 
+def get_integer(prompt): 
+    
+    while True: 
+
+        try: 
+            return int(input(prompt))
+            
+        except ValueError: 
+
+            print("Please enter a whole number.")
+
 def load_inventory():
     """
     Load Tool objects from inventory.json.
@@ -42,7 +53,7 @@ def add_tool(): #Add new tool to inventory.
     Add a new tool to the inventory.
     """
     name = input("Enter the name of the tool: ")
-    quantity = int(input("Enter the quantity of the tool: "))
+    quantity = get_integer("Enter the quantity of the tool: ")
     condition = input("Enter the condition of the tool: ")
     location = input("Enter the location of the tool: ")
 
