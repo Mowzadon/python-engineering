@@ -1,12 +1,38 @@
 import json
+from pathlib import Path
+
 from tool import Tool #import Tool class from tool.py
+PROJECT_FOLDER = Path(__file__).parent
+INVENTORY_FILE = PROJECT_FOLDER / "inventory.json"
 
-#Initialize starting inventory objects.
-hammer = Tool("Hammer", 3, "Good", "Shelf A")
-drill = Tool("Drill", 1, "Fair", "Workshop")
-wrench = Tool("Wrench", 5, "Poor", "Drawer 2")
+def load_inventory():
+    """
+    Load Tool objects from inventory.json.
 
-inventory = [hammer, drill, wrench]
+    Returns:
+        list[Tool]: The loaded inventory.
+    """
+    try:
+        with open(INVENTORY_FILE, "r") as file:
+            inventory_data = json.load(file)
+
+    except FileNotFoundError:
+        return []
+
+    loaded_inventory = []
+
+    for tool_data in inventory_data:
+        new_tool = Tool(
+            tool_data["name"],
+            tool_data["quantity"],
+            tool_data["condition"],
+            tool_data["location"]
+        )
+        loaded_inventory.append(new_tool)
+
+    return loaded_inventory
+
+inventory = load_inventory()
 
 def add_tool(): #Add new tool to inventory.
     """
@@ -101,8 +127,9 @@ def save_inventory():
     for tool in inventory:
         inventory_data.append(tool.to_dict())
 
-    with open("inventory.json", "w") as file:
-        json.dump(inventory_data, file, indent=4)    
+    with open(INVENTORY_FILE, "w") as file:
+        json.dump(inventory_data, file, indent=4) 
+                
 
 #main program loop
 def main():
