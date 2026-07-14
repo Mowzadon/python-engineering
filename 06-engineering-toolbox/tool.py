@@ -69,4 +69,4 @@ class Tool:
             "condition": self.condition, 
             "location": self.location
 
-        }    
+        } 
