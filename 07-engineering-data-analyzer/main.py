@@ -1,43 +1,21 @@
-import numpy as np
+import pandas as pd
 
-# Temperature readings from an industrial machine (°C)
-temperatures = np.array([
-    21.4,
-    22.1,
-    23.0,
-    22.7,
-    21.9,
-    22.5,
-    23.2,
-    22.8,
-    21.7,
-    22.3
-])
+data = pd.read_csv("temperature_data.csv")
 
-print("Temperature Readings")
-print(temperatures)
+print("========== Machine Temperature Report ==========\n")
 
-print()
+print(f"Total Readings: {len(data.index)} ")
 
-print(f"Average Temperature: {np.mean(temperatures):.2f} °C") #:.2f -prints to second decimal place
-print(f"Highest Temperature: {np.max(temperatures):.2f} °C")
-print(f"Lowest Temperature: {np.min(temperatures):.2f} °C")
-print(f"Standard Deviation: {np.std(temperatures):.2f} °C")
+print(f"Average Temperature: {data["Temperature"].mean():.2f}") #prints avg temp rounded to 2 decimal places
+print(f"Highest Temperature: {data["Temperature"].max():.2f}")
+print(f"Lowest Temperature: {data["Temperature"].min():.2f}")
 
-print()
+high_temperatures = data[data["Temperature"] > 22.5]
+num_high_temps = len(high_temperatures)
 
-print("Temperatures above 22.5°C")
-print(temperatures > 22.5)
-
-print()
-
-print("Actual temperatures above 22.5°C:")
-print(temperatures[temperatures > 22.5])
-
-high_temperatures = temperatures[temperatures > 22.5] 
-
-print("\nHigh Temperature Report")
+print(f"\nHigh Temperature Readings (>22.5°C): {num_high_temps}\n")
 print(high_temperatures)
 
-print(f"Number of high readings: {len(high_temperatures)}")
-print(f"Average high temperature: {np.mean(high_temperatures):.2f} °C")
+
+
+
