@@ -19,7 +19,7 @@ print(temperatures)
 
 print()
 
-print(f"Average Temperature: {np.mean(temperatures):.2f} °C")
+print(f"Average Temperature: {np.mean(temperatures):.2f} °C") #:.2f -prints to second decimal place
 print(f"Highest Temperature: {np.max(temperatures):.2f} °C")
 print(f"Lowest Temperature: {np.min(temperatures):.2f} °C")
 print(f"Standard Deviation: {np.std(temperatures):.2f} °C")
@@ -34,7 +34,7 @@ print()
 print("Actual temperatures above 22.5°C:")
 print(temperatures[temperatures > 22.5])
 
-high_temperatures = temperatures[temperatures > 22.5]
+high_temperatures = temperatures[temperatures > 22.5] 
 
 print("\nHigh Temperature Report")
 print(high_temperatures)
