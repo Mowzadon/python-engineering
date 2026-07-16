@@ -16,6 +16,11 @@ num_high_temps = len(high_temperatures)
 print(f"\nHigh Temperature Readings (>22.5°C): {num_high_temps}\n")
 print(high_temperatures)
 
+print()
+hottest_row = data[data["Temperature"] == data["Temperature"].max()]
+print(f"Row where highest temperature occurs: {hottest_row}")
+
+
 
 
 
