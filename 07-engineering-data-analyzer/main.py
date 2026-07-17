@@ -3,6 +3,16 @@ import matplotlib.pyplot as plt
 
 data = pd.read_csv("temperature_data.csv")
 
+print(data.head())
+print()
+print(data.columns)
+
+print(data.head())
+print()
+print(data.columns)
+
+data = pd.read_csv("temperature_data.csv")
+
 print("========== Machine Temperature Report ==========\n")
 
 print(f"Total Readings: {len(data.index)} ")
