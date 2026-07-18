@@ -56,28 +56,39 @@ def main():
 
     #Sensor graph
 
-    fig, ax1 = plt.subplots(figsize=(10,5)) #create a figure 10" by 5"
-    ax1.plot(
+    fig, ax = plt.subplots(figsize=(10,5)) #create a figure 10" by 5"
+    ax.plot(
         data['Time'], 
         data['Temperature'], 
         marker="o",
         label="Temperature") #create line (x,y)
 
-    ax1.set_title("Temperature Over TIme")
-    ax1.set_xlabel("Time")
-    ax1.set_ylabel("Temperature (°C)")
-
-    ax1.axhline(
+    #horizontal line
+    ax.axhline(
         temperature_limit,
         linestyle = '--',
         label = 'Temperature Limit',
         color = 'orange'
     )
 
-    ax1.legend()
+    ax.plot(
+    high_temperature_readings['Time'],
+    high_temperature_readings['Temperature'],
+    marker='o',
+    linestyle='',
+    markersize=10,
+    color='red',
+    label='High Temperature'
+)
 
-    
-    ax1.grid(True)
+    ax.legend()
+    ax.grid(True)
+
+    ax.set_title("Temperature Over TIme")
+    ax.set_xlabel("Time")
+    ax.set_ylabel("Temperature (°C)")
+
+
 
     
     plt.show()
