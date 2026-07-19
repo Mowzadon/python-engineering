@@ -48,7 +48,7 @@ inventory = load_inventory()
 def add_tool(): #Add new tool to inventory.
     """
     Args:
-    (none) --> (none)
+        
 
     Add a new tool to the inventory.
     """
