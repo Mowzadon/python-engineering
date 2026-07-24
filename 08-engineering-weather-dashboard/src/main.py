@@ -1,21 +1,24 @@
 import requests
 
+def get_weather():
+    response = requests.get(url, timeout=10)
+
+    if response.status_code == 200: 
+        return response.json()
+
+    return None 
+
+
 url = (
     "https://api.open-meteo.com/v1/forecast"
     "?latitude=43.6532"
     "&longitude=-79.3832"
     "&current=temperature_2m,relative_humidity_2m,wind_speed_10m"
 )
-
 try:
-    # Stop waiting if the server does not respond within 10 seconds.
-    response = requests.get(url, timeout=10)
-
-    # Displays the raw JSON text returned by the server.
-    #print(response.text)
-
-    if response.status_code == 200:
-        data = response.json()
+    
+    data = get_weather()
+    if data:
 
         temperature = data["current"]["temperature_2m"]
         humidity = data["current"]["relative_humidity_2m"]
