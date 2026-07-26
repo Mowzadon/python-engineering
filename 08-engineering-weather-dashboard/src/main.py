@@ -148,7 +148,7 @@ def display_forecast(dates, highs, lows, temperature_unit):
     for i in range(len(dates)): 
         print(
             f"{dates[i]}: "
-            f" High {highs[i]} {temperature_unit}," 
+            f" High {highs[i]} {temperature_unit}, " 
             f"Low {lows[i]} {temperature_unit}"
         )
 
@@ -173,7 +173,7 @@ def main():
 
             dates, highs, lows = extract_forecast_data(data)
             temperature_unit = weather[4]
-            
+
             display_forecast(dates, highs, lows, temperature_unit)
 
         else:
