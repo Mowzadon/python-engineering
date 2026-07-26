@@ -1,13 +1,27 @@
 import requests
 
-def get_weather():
+def get_weather(latitude, longitude):
     """
     Retrieves the current weather data from the Open-Meteo API.
-        
+    
+    Args: 
+        latitude (float):
+            Gives North-South position (horizontal bands around the Earth).
+
+        longitude (float): 
+            Gives East-West position (vertical bands around the Earth).
+    
     Returns: 
         dict | None: 
             A dictionary containing the weather data if the request succeeds, otherwise None. 
     """
+    url = (
+        "https://api.open-meteo.com/v1/forecast"
+        f"?latitude={latitude}"
+        f"&longitude={longitude}"
+        "&current=temperature_2m,relative_humidity_2m,wind_speed_10m"
+    )
+
     response = requests.get(url, timeout=10)
 
     if response.status_code == 200: 
@@ -93,16 +107,10 @@ def display_weather_dashboard(
     print(f"{'Wind speed':<{label_width}}: {wind_speed} {wind_speed_unit}")
     print(f"{'Time':<{label_width}}: {time}")
 
-url = (
-    "https://api.open-meteo.com/v1/forecast"
-    "?latitude=43.6532"
-    "&longitude=-79.3832"
-    "&current=temperature_2m,relative_humidity_2m,wind_speed_10m"
-)
 def main():
 
     try:
-        data = get_weather()
+        data = get_weather(43.6532, -79.3832)
 
         if data:
             weather = extract_weather_data(data) 
