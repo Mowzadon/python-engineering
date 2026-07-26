@@ -9,4 +9,8 @@ This repository contains my learning journey in ahead of year 2 Industrial Engin
 - Develop a strong GitHub portfolio
 
 ## Current Progress
-- [ ] Calculator (Complete)
+- [ ] Arithmetic Calculator (Complete)
+- [ ] Engineering Toolbox v1.0. (Complete)
+- [ ] Engineering Data Analyzer v1.0.(Complete)
+- [ ] Engineering Weather Database v1.0. (Complete)
+- [ ] Engineering Weather Database v2.0 (In progress)
