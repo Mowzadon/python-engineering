@@ -70,6 +70,7 @@ def extract_weather_data(weather_data):
     return temperature, humidity, wind_speed, time, temperature_unit, humidity_unit, wind_speed_unit
 
 def display_weather_dashboard(
+    city, 
     temperature, 
     humidity, 
     wind_speed, 
@@ -107,7 +108,7 @@ def display_weather_dashboard(
     label_width = 12
 
     print("="*40)
-    print(" Toronto Weather Dashboard")
+    print(f"{city} Weather Dashboard")
     print("="*40)
     print()
 
@@ -119,16 +120,21 @@ def display_weather_dashboard(
 def main():
 
     try:
-        city = input("Please enter the name of a city for the weather forecast: ")
-        coordinates = cities[city]
-        data = get_weather(coordinates[0], coordinates[1])
+        city = input(
+            "Please enter the name of a city for the weather forecast: "
+            ).strip().title() #.strip() removes leading and trailing whitespaces (or any specified chars), .title() titlecases each word
+        if city not in cities: 
+            print("That city is not available.")
+            return #Exits main so python does not attempt an invalid dictionary lookup.
+        
+        latitude, longitude= cities[city] #Unpack coordinates since each dictionary value is a tuple. 
+        data = get_weather(latitude, longitude)
 
         if data:
             weather = extract_weather_data(data) 
             #When a function returns comma separated values, Python packs them
             #into a tuple, this unpacks them in the order they were returned. 
-
-            display_weather_dashboard(*weather)# '*' Means take this tuple and unpack it into separate Args. 
+            display_weather_dashboard(city, *weather)# '*' Means take this tuple and unpack it into separate Args. 
 
         else:
             print(f"Could not retrieve weather data.")
