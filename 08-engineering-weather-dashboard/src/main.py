@@ -1,15 +1,24 @@
 import requests
 
-def get_weather(latitude, longitude):
+#Dictionary of cities and their corresponding latitude and longitude. 
+cities = {
+    "Toronto": (43.6532, -79.3832), 
+    "Vancouver": (49.2827, -123.1207), 
+    "Calgary": (51.0447, -114.0819), 
+    "Montreal": (45.5019, -73.5674), 
+}
+
+
+def get_weather(latitude, longitude): #Gives North-South position (horizontal bands around the Earth), Gives East-West position (vertical bands around the Earth).
     """
     Retrieves the current weather data from the Open-Meteo API.
     
     Args: 
         latitude (float):
-            Gives North-South position (horizontal bands around the Earth).
+            Latitude of the location to retrieve weather for.
 
         longitude (float): 
-            Gives East-West position (vertical bands around the Earth).
+            Longitude of the location to retrieve weather for.
     
     Returns: 
         dict | None: 
@@ -110,7 +119,9 @@ def display_weather_dashboard(
 def main():
 
     try:
-        data = get_weather(43.6532, -79.3832)
+        city = input("Please enter the name of a city for the weather forecast: ")
+        coordinates = cities[city]
+        data = get_weather(coordinates[0], coordinates[1])
 
         if data:
             weather = extract_weather_data(data) 
