@@ -29,6 +29,8 @@ def get_weather(latitude, longitude): #Gives North-South position (horizontal ba
         f"?latitude={latitude}"
         f"&longitude={longitude}"
         "&current=temperature_2m,relative_humidity_2m,wind_speed_10m"
+        "&daily=temperature_2m_max,temperature_2m_min"
+        "&timezone=auto"
     )
 
     response = requests.get(url, timeout=10)
@@ -117,6 +119,39 @@ def display_weather_dashboard(
     print(f"{'Wind speed':<{label_width}}: {wind_speed} {wind_speed_unit}")
     print(f"{'Time':<{label_width}}: {time}")
 
+def extract_forecast_data(weather_data):
+    """
+    Args: 
+        weather_data (dict):
+            The JSON dictionary returned by the Open-Meteo API
+    
+    Returns: 
+        dates (list):
+            List of weekly forecast dates. 
+        highs (list):
+            List of highest temperatures for each forecast day. 
+        
+        lows (list): 
+            List of lowest temperatures for each forecast day.
+    """
+    dates = weather_data["daily"]["time"]
+    highs = weather_data["daily"]["temperature_2m_max"]
+    lows = weather_data["daily"]["temperature_2m_min"]
+
+    return dates, highs, lows
+
+def display_forecast(dates, highs, lows, temperature_unit): 
+    print()
+    print("7-Day Forecast")
+    print("="*40)
+
+    for i in range(len(dates)): 
+        print(
+            f"{dates[i]}: "
+            f" High {highs[i]} {temperature_unit}," 
+            f"Low {lows[i]} {temperature_unit}"
+        )
+
 def main():
 
     try:
@@ -135,6 +170,11 @@ def main():
             #When a function returns comma separated values, Python packs them
             #into a tuple, this unpacks them in the order they were returned. 
             display_weather_dashboard(city, *weather)# '*' Means take this tuple and unpack it into separate Args. 
+
+            dates, highs, lows = extract_forecast_data(data)
+            temperature_unit = weather[4]
+            
+            display_forecast(dates, highs, lows, temperature_unit)
 
         else:
             print(f"Could not retrieve weather data.")
