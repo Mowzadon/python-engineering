@@ -130,13 +130,13 @@ def extract_forecast_data(weather_data):
         tuple: 
             A tuple containing: 
                 - dates (list): 
-                    List of weekly forecast dates. 
+                    Forecast dates.
 
                 - highs (list):
-                    List of highest temperatures for each forecast day. 
+                    Daily high temperatures.
 
                 - lows (list): 
-                    List of lowest temperatures for each forecast day.
+                    Unit for the temperatures.
     """
     dates = weather_data["daily"]["time"]
     highs = weather_data["daily"]["temperature_2m_max"]
@@ -145,6 +145,22 @@ def extract_forecast_data(weather_data):
     return dates, highs, lows
 
 def display_forecast(dates, highs, lows, temperature_unit): 
+    """
+    Displays the 7-day weather forecast.
+
+    Args:
+        dates (list):
+            Forecast dates.
+
+        highs (list):
+            Daily high temperatures.
+
+        lows (list):
+            Daily low temperatures.
+
+        temperature_unit (str):
+            Unit for the temperatures.
+    """
     print()
     print("7-Day Forecast")
     print("="*40)
@@ -152,26 +168,29 @@ def display_forecast(dates, highs, lows, temperature_unit):
     for i in range(len(dates)): 
         print(
             f"{dates[i]}: "
-            f" High {highs[i]} {temperature_unit}, " 
+            f"High {highs[i]} {temperature_unit}, " 
             f"Low {lows[i]} {temperature_unit}"
         )
 
 def save_weather_data(
     city,
-    time, 
+    time,
     temperature,
     humidity,
     wind_speed,
-): 
-    file_path = Path("weather_history.csv")
+):
+    """
+    Saves the current weather observation to weather_history.csv.
 
+    If the file does not exist, it is created and a header row is written.
+    """
+    file_path = Path("weather_history.csv")
     file_exists = file_path.exists()
 
-    with open(file_path, "a") as file: 
+    with open(file_path, "a", newline="") as file:
+        if not file_exists:
+            file.write("City,Time,Temperature,Humidity,Wind Speed\n")
 
-        if not file_exists: 
-            file.write("City, Time, Temperature, Humidity, Wind Speed \n")
-        
         file.write(
             f"{city},{time},{temperature},{humidity},{wind_speed}\n"
         )
