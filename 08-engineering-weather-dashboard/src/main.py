@@ -1,4 +1,5 @@
 import requests
+from pathlib import Path
 
 #Dictionary of cities and their corresponding latitude and longitude. 
 cities = {
@@ -126,13 +127,16 @@ def extract_forecast_data(weather_data):
             The JSON dictionary returned by the Open-Meteo API
     
     Returns: 
-        dates (list):
-            List of weekly forecast dates. 
-        highs (list):
-            List of highest temperatures for each forecast day. 
-        
-        lows (list): 
-            List of lowest temperatures for each forecast day.
+        tuple: 
+            A tuple containing: 
+                - dates (list): 
+                    List of weekly forecast dates. 
+
+                - highs (list):
+                    List of highest temperatures for each forecast day. 
+
+                - lows (list): 
+                    List of lowest temperatures for each forecast day.
     """
     dates = weather_data["daily"]["time"]
     highs = weather_data["daily"]["temperature_2m_max"]
@@ -152,6 +156,26 @@ def display_forecast(dates, highs, lows, temperature_unit):
             f"Low {lows[i]} {temperature_unit}"
         )
 
+def save_weather_data(
+    city,
+    time, 
+    temperature,
+    humidity,
+    wind_speed,
+): 
+    file_path = Path("weather_history.csv")
+
+    file_exists = file_path.exists()
+
+    with open(file_path, "a") as file: 
+
+        if not file_exists: 
+            file.write("City, Time, Temperature, Humidity, Wind Speed \n")
+        
+        file.write(
+            f"{city},{time},{temperature},{humidity},{wind_speed}\n"
+        )
+
 def main():
 
     try:
@@ -166,15 +190,43 @@ def main():
         data = get_weather(latitude, longitude)
 
         if data:
-            weather = extract_weather_data(data) 
-            #When a function returns comma separated values, Python packs them
-            #into a tuple, this unpacks them in the order they were returned. 
-            display_weather_dashboard(city, *weather)# '*' Means take this tuple and unpack it into separate Args. 
+            (
+                temperature,
+                humidity,
+                wind_speed,
+                time,
+                temperature_unit,
+                humidity_unit,
+                wind_speed_unit,
+            ) = extract_weather_data(data)
+
+            display_weather_dashboard(
+                city,
+                temperature,
+                humidity,
+                wind_speed,
+                time,
+                temperature_unit,
+                humidity_unit,
+                wind_speed_unit,
+            )
 
             dates, highs, lows = extract_forecast_data(data)
-            temperature_unit = weather[4]
 
-            display_forecast(dates, highs, lows, temperature_unit)
+            display_forecast(
+                dates,
+                highs,
+                lows,
+                temperature_unit,
+            )
+
+            save_weather_data(
+                city,
+                time,
+                temperature,
+                humidity,
+                wind_speed,
+            )
 
         else:
             print(f"Could not retrieve weather data.")
