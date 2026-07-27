@@ -184,7 +184,11 @@ def save_weather_data(
 
     If the file does not exist, it is created and a header row is written.
     """
-    file_path = Path("weather_history.csv")
+    project_folder = Path(__file__).resolve().parent.parent
+    data_folder = project_folder / "data"
+    data_folder.mkdir(exist_ok=True)
+
+    file_path = data_folder / "weather_history.csv"
     file_exists = file_path.exists()
 
     with open(file_path, "a", newline="") as file:
