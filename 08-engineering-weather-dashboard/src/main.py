@@ -1,5 +1,6 @@
 import requests
 from pathlib import Path
+import matplotlib.pyplot as plt
 
 #Dictionary of cities and their corresponding latitude and longitude. 
 cities = {
@@ -86,6 +87,9 @@ def display_weather_dashboard(
     Displays the current weather information in a formatted dashboard.
 
     Args:
+        city (str):
+            Name of the selected city.
+
         temperature (float):
             The current air temperature.
 
@@ -135,8 +139,8 @@ def extract_forecast_data(weather_data):
                 - highs (list):
                     Daily high temperatures.
 
-                - lows (list): 
-                    Unit for the temperatures.
+                - lows (list):
+                    Daily low temperatures.
     """
     dates = weather_data["daily"]["time"]
     highs = weather_data["daily"]["temperature_2m_max"]
@@ -199,6 +203,46 @@ def save_weather_data(
             f"{city},{time},{temperature},{humidity},{wind_speed}\n"
         )
 
+def plot_forecast(city, dates, highs, lows):
+    """
+    Creates, saves, and displays a line graph of the 7-day weather forecast.
+
+    Args:
+        city (str):
+            Name of the selected city.
+
+        dates (list):
+            Forecast dates.
+
+        highs (list):
+            Daily high temperatures.
+
+        lows (list):
+            Daily low temperatures.
+    """
+    project_folder = Path(__file__).resolve().parent.parent
+
+    graphs_folder = project_folder / "graphs"
+    graphs_folder.mkdir(exist_ok=True)
+
+    graph_path = graphs_folder / f"{city.lower()}_forecast.png"
+
+    plt.figure(figsize=(10, 5))
+
+    plt.plot(dates, highs, label="High")
+    plt.plot(dates, lows, label="Low")
+
+    plt.title(f"{city} 7-Day Weather Forecast")
+    plt.xlabel("Date")
+    plt.ylabel("Temperature (°C)")
+    plt.grid(True)
+    plt.legend()
+
+    plt.savefig(graph_path)
+    plt.show()
+    plt.close()
+
+
 def main():
 
     try:
@@ -241,6 +285,13 @@ def main():
                 highs,
                 lows,
                 temperature_unit,
+            )
+
+            plot_forecast(
+                city,
+                dates, 
+                highs,
+                lows,   
             )
 
             save_weather_data(
