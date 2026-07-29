@@ -13,4 +13,4 @@ This repository contains my learning journey in ahead of year 2 Industrial Engin
 - [ ] Engineering Toolbox v1.0. (Complete)
 - [ ] Engineering Data Analyzer v1.0.(Complete)
 - [ ] Engineering Weather Database v1.0. (Complete)
-- [ ] Engineering Weather Database v2.0 (In progress)
+- [ ] Engineering Weather Database v2.0 (Complete)
