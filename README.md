@@ -1,10 +1,9 @@
 # Python Engineering Journey
 
-This repository contains my learning journey in ahead of year 2 Industrial Engineering at the University of Toronto.
+This repository contains my learning journey in python ahead of year 2 Industrial Engineering at the University of Toronto.
 
 ## Goals
-- Learn Python for engineering application
-- Prepare for hackathons
+- Learn Python from scratch to build modular code
 - Pray I don't get whooped by year 2
 
 ## Current Progress
@@ -14,4 +13,6 @@ This repository contains my learning journey in ahead of year 2 Industrial Engin
 - [✓] Engineering Weather Database v1.0. (Complete)
 - [✓] Engineering Weather Database v2.0. (Complete)
 - [✓] Engineering Weather Database v3.0. (Complete)
+- [✓] University Task Manager
+- [✓] Lighting Assistant for Photography
 
