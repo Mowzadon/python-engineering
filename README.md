@@ -7,12 +7,11 @@ This repository contains my learning journey in python ahead of year 2 Industria
 - Pray I don't get whooped by year 2
 
 ## Current Progress
-- [✓] Arithmetic Calculator (Complete)
-- [✓] Engineering Toolbox v1.0. (Complete)
-- [✓] Engineering Data Analyzer v1.0.(Complete)
-- [✓] Engineering Weather Database v1.0. (Complete)
-- [✓] Engineering Weather Database v2.0. (Complete)
-- [✓] Engineering Weather Database v3.0. (Complete)
-- [✓] University Task Manager
+- [✓] Arithmetic Calculator
+- [✓] Engineering Toolbox v2.0. 
+- [✓] Engineering Data Analyzer v1.0.
+- [✓] Engineering Weather Database v1.0.
+- [✓] Engineering Weather Database v2.0.
+- [✓] Engineering Weather Database v3.0.
 - [✓] Lighting Assistant for Photography
 
